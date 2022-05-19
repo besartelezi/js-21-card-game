@@ -260,7 +260,22 @@
                 imgFile: "images/cards/king_of_spades.svg"
             },
         ]
-    
+    console.log(CardDeck)
+
+    let CurrentHandDealer
+
+    let CurrentHandPlayer
+
+    const StartButton = document.getElementById("StartGame");
+
+        const StartGame = () => {
+            CurrentHandPlayer = Math.floor(Math.random()*CardDeck.length)
+            console.log(CurrentHandPlayer.toString())
+        }
+
+        StartButton.addEventListener("click",StartGame)
+
+
 
 
 

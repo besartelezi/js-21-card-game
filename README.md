@@ -1,5 +1,5 @@
 # Blackjack, the Jack Black of card games
-This sentence will be replaced with an url to the webpage the microsecond it is pushed to repository.
+[Play the game here!](https://besartelezi.github.io/js-21-card-game/)
 
 ## Rules
 In order to recreate the game, we should first learn what the rules are. After playing the game online a few times and using the ancient divine art of all programmers before me (Googling stuff), I have written down all the rules, everything you need, and how you should play the game in the list under this text. [This website](https://bicyclecards.com/how-to-play/blackjack/) helped me understand the rules. </br>
