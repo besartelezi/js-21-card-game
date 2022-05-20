@@ -308,6 +308,7 @@
                 FirstCardsDealer = CardDeck[FirstCardsGivenToComputerIndexNumber];
                 CurrentHandDealerArray.push(FirstCardsDealer)
                 CurrentHandDealerValue += FirstCardsDealer.cardvalue;
+
             }
             //I have put this part of the code outside of the loop, because I want the second card to not be shown to the player
             const FirstCardsDealerShown = document.createElement("img");
@@ -321,15 +322,17 @@
             document.getElementById("DealersCards").appendChild(SeconCardDealerHidden)
             CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
 
-            console.log("The player has " +CurrentHandPlayerValue+ " points")
-            console.log("The dealer has " +CurrentHandDealerValue+ " points")
+            console.log(CurrentHandPlayerArray)
+            console.log(CurrentHandPlayerValue)
+            console.log(CurrentHandDealerArray)
+            console.log(CurrentHandDealerValue)
 
             if (CurrentHandPlayerValue === 21){
                 Result.innerHTML = "BLACKJACK! YOU WIN!!!"
             }
             else if (CurrentHandDealerValue=== 21) {
                 Result.innerHTML = "You just got BLACKJack'd by the dealer!";
-                SeconCardDealerHidden.src = CurrentHandDealerArray[CurrentHandDealerArray.length -1].imgFile;
+                SeconCardDealerHidden.src = CurrentHandDealerArray[0].imgFile;
             }
         }
         StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
