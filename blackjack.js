@@ -277,9 +277,10 @@
     let FirstCardsPlayer
     let FirstCardsDealer
 
-
     const Result = document.getElementById("Result");
     const StartButton = document.getElementById("StartGame");
+    const HitButton = document.getElementById("Hit");
+    const StandButton = document.getElementById("Stand");
 
     //The function that starts the game
         const StartGameGivingOutPlayerCards = () => {
@@ -322,13 +323,7 @@
             document.getElementById("DealersCards").appendChild(SeconCardDealerHidden)
             CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
 
-            console.log(CurrentHandPlayerArray)
-            console.log(CurrentHandPlayerValue)
-            console.log(CurrentHandDealerArray)
-            console.log(CurrentHandDealerValue)
-
             if (CurrentHandPlayerValue === 21){
-                Result.innerHTML = "BLACKJACK! YOU WIN!!!"
             }
             else if (CurrentHandDealerValue=== 21) {
                 Result.innerHTML = "You just got BLACKJack'd by the dealer!";
@@ -337,8 +332,34 @@
         }
         StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
 
+    const PlayerHits = () => {
+            let PlayerHitsCardIndexNumber = Math.floor(Math.random()*CardDeck.length)
+            let PlayerHitsCard = CardDeck[PlayerHitsCardIndexNumber];
+            CurrentHandPlayerArray.push(PlayerHitsCard)
+        CurrentHandPlayerValue += PlayerHitsCard.cardvalue;
+        const PlayerHitsCardShown = document.createElement("img");
+        PlayerHitsCardShown.src = CurrentHandPlayerArray[CurrentHandPlayerArray.length -1].imgFile;
+        document.getElementById("PlayersCards").appendChild(PlayerHitsCardShown);
+        CardDeck.splice(FirstCardsGivenToPlayerIndexNumber,1);
+        if (CurrentHandPlayerValue>22){
+            Result.innerHTML = "You lose, your score is too damn high!"
+            //add code that will not let player use hit anymore, or instantly reset everything
+        }
+    }
+    HitButton.addEventListener("click", PlayerHits);
 
+    const PlayerStands = () => {
+            if (CurrentHandPlayerValue === 21 && CurrentHandDealerValue < 21 ||
+            CurrentHandPlayerValue === 21 && CurrentHandDealerValue > 21) {
+                Result.innerHTML = "BLACKJACK! YOU WIN!!!"
+            }
+            //How the dealer will respond
+            else if (CurrentHandDealerValue>17) {
 
+            }
+    }
+
+    HitButton.addEventListener("click", PlayerHits);
 
 
 

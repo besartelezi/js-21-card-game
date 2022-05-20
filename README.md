@@ -68,4 +68,20 @@ When a card had been taken from the deck/it has been hit, I want the card itself
 Thanks to some help of the coaches, I was able to do this the way I wanted. At this point, I have finished the startup of the game. </br>
 
 At the very start, both the player and the dealer get two cards, both cards of the player can be seen while one card of the dealer is hidden.
-If the dealer has a blackjack, he immediately wins. I have found some bugs with the Ace card however and I intend to fix them once I have the chance
+If the dealer has a blackjack, he immediately wins. I have found some bugs with the Ace card however and I intend to fix them once I have the chance:
+* The issue was that when the dealer won with a blackjack, the cards he shows were just both a copy of the same card, instead of two different cards. This issue was resolved luckily.
+
+Now that the play function is working, I'll have to focus on the player's options of hitting and standing, and then the acions the dealer has to commit. I already have a clear vision of how the dealer will act. 
+I will also have to move the "blackjack" part of my play function to the dealers and the players side of actions.
+
+## When in Doubt, Write it Out
+I am struggling a bit on how to go further with the game, that's why I am going to write out everything I have and everything I have yet to achieve and cross out whatever I've finished
+* I have function that gives out two cards at the beginning to the player and the dealer. All cards are a part of an array, so when the cards are in the hands of the player and dealer, they're taken out of the deck.
+  * The starting Process is working as intended, I just want to add an option that if the total amount of the cards their value = 21, the player cant hit and skips straight to standing without having to press anything else. If the dealer also has a 21 after that without drawing any extra cards, its a draw and the game resets, or if the dealer doesnt have a 21, the game ends and the player wins.
+  ~~* I want to create the hitting function, that the player can keep using until he goes over the limit of a 21 cardvalue in their hands.~~~~
+  * I want to create a stand function, that will be used as the dealer's actions. So once the player clicks "stand", it goes to the dealers turn.
+    * if the dealer has a cardvalue of 16 or less, he will keep hitting until he gets a cardvalue of above 17. If during the hitting process, the dealer gets a higher cardvalue than 21, they lose.
+    * Once the dealer gets a cardvalue of higher than 17, there will be an if function that:
+      * When players cards > dealers cards = player wins (when gambling, you get all the money in the wager)
+      * When player cards > dealers cards = dealer wins (when gambling, the dealer get all the money in the wager)
+      * When player cards = dealers cards = push = a tie (when gambling, nobody loses their money)
