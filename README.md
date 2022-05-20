@@ -54,11 +54,6 @@ My current objectives are (I did not write the list in chronological order):
 
 #### That's all I got for now, planning is one thing but actually coding is another one entirely.
 
-### Fun features
-* The backside of all cards will be a Yu-Gi-Oh card
-* Let the Ace be worth 1 point if the player or dealer hits this card and if the total of the cards will be valued at above 21 if the ace is counted as having a value of 11
-  * This is how it's used in professional BlackJack
-
 ## Some Thoughts
 At first I thought I had to remove the cards that will be used from the deck entirely, but now I'm thinking it might be better to put them in another array.
 I'm thinking of creating two new arrays, one will be called 'PlayersHand' and the other will be 'ComputersHand'. </br>
@@ -92,8 +87,19 @@ I have function that gives out two cards at the beginning to the player and the 
 Most importantly, I need to make sure the user experience goes smoothly, this means, to automate anything that can be automated, remove buttons when they aren't needed anymore, etc etc.
 - [x] The Hit and Stand buttons are hidden until the game had started and it's the player's turn, once he stands, the buttons are removed again. 
 - [x] After game is finished, the start button needs to transform into a "restart" button
-- [ ] If I hit and get over 21, the game needs to be over, I shouldn't be able to hit anymore and my only option should be to playa again.
+- [ ] If the player hits and they get over 21, the game needs to be over, they shouldn't be able to hit anymore and their only option should be to play again.
+- [ ] The task description mentioned something about using prompts when needed, double-check if I have met those requirements.
 - [ ] Styling (this can be done at the end)
+
+### Fun Features I could add if I had the time
+* Let the Ace be worth 1 point if the player or dealer hits this card and if the total of the cards will be valued at above 21 if the ace is counted as having a value of 11
+  * This is how it's used in professional BlackJack
+* A gambling mechanic
+* Create custom players in the game (computers)
+* Add a card-counter, showing the player how many cards there are currently in the deck
+* Have the dealer be D'Arby from the popular anime JoJo's Bizarre Adventure, and while playing, let him sometimes say one of his famous quotes
+  * I created a similar mechanic like this for my cookie clicker game [that you can play here!](https://besartelezi.github.io/coockie-clicker/)
+* When the player wins with a natural 21, that it's shown on the screen that they won by Blackjack! This also counts for the dealer. And if both parties have a natural 21, that it ends up in a draw.
 
 ## What time? Reflection Time!
 Something I could definitely work on in the future, is making my HTML more SEO-friendly. I have used a lot of divs at places where I could certainly place another element. </br>
