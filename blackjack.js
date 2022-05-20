@@ -1,4 +1,5 @@
 (function () {
+    //The CardDeck array
         let CardDeck = [
             {
                 card: "TwoOfClubs",
@@ -11,7 +12,7 @@
                 imgFile: "images/cards/2_of_diamonds.svg"
             },
             {
-                card: "TwoOfHears",
+                card: "TwoOfHearts",
                 cardvalue: 2,
                 imgFile: "images/cards/2_of_hearts.svg"
             },
@@ -262,18 +263,76 @@
         ]
     console.log(CardDeck)
 
-    let CurrentHandDealer
 
-    let CurrentHandPlayer
+    let CurrentHandPlayerArray = []
+    let CurrentHandDealerArray = []
 
+
+    let FirstCardsGivenToPlayerIndexNumber
+    let FirstCardsGivenToComputerIndexNumber
+
+    let CurrentHandDealerValue = 0;
+    let CurrentHandPlayerValue = 0;
+
+    let FirstCardsPlayer
+    let FirstCardsDealer
+
+
+    const Result = document.getElementById("Result");
     const StartButton = document.getElementById("StartGame");
 
-        const StartGame = () => {
-            CurrentHandPlayer = Math.floor(Math.random()*CardDeck.length)
-            console.log(CurrentHandPlayer.toString())
-        }
+    //The function that starts the game
+        const StartGameGivingOutPlayerCards = () => {
+            //letting the code run twice
+            for (let i=0; i<2; i++) {
+                //This part is all about the player getting their first two cards
+                //picks out a index number of one of the cards from the array
+                FirstCardsGivenToPlayerIndexNumber = Math.floor(Math.random()*CardDeck.length)
+                //picks out the card by the index number
+                FirstCardsPlayer = CardDeck[FirstCardsGivenToPlayerIndexNumber];
+                //push the card that has been drawn/hit from the deck into the array that serves as the current player's hands
+                CurrentHandPlayerArray.push(FirstCardsPlayer)
+                //add the value of the card to the current value of the player's hands
+                CurrentHandPlayerValue += FirstCardsPlayer.cardvalue;
+                //Showing the image from the drawn card on the players side of the table
+                const FirstPlayerCardsShown = document.createElement("img");
+                //Picks out the current card that's in the player's hand
+                FirstPlayerCardsShown.src = CurrentHandPlayerArray[CurrentHandPlayerArray.length -1].imgFile
+                document.getElementById("PlayersCards").appendChild(FirstPlayerCardsShown)
+                //removes the chosen card from the deck
+                CardDeck.splice(FirstCardsGivenToPlayerIndexNumber,1);
+                //console logged everything to double check, it is working as intented
 
-        StartButton.addEventListener("click",StartGame)
+                //This part is all about the dealer getting their first two cards
+                FirstCardsGivenToComputerIndexNumber = Math.floor(Math.random()*CardDeck.length)
+                FirstCardsDealer = CardDeck[FirstCardsGivenToComputerIndexNumber];
+                CurrentHandDealerArray.push(FirstCardsDealer)
+                CurrentHandDealerValue += FirstCardsDealer.cardvalue;
+            }
+            //I have put this part of the code outside of the loop, because I want the second card to not be shown to the player
+            const FirstCardsDealerShown = document.createElement("img");
+            FirstCardsDealerShown.src = CurrentHandDealerArray[CurrentHandDealerArray.length -1].imgFile
+            document.getElementById("DealersCards").appendChild(FirstCardsDealerShown)
+            CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
+
+            const SeconCardDealerHidden = document.createElement("img");
+            //This part has been adjusted, so it shows the backside of the second card
+            SeconCardDealerHidden.src = "images/cards/yugioh.jpg"
+            document.getElementById("DealersCards").appendChild(SeconCardDealerHidden)
+            CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
+
+            console.log("The player has " +CurrentHandPlayerValue+ " points")
+            console.log("The dealer has " +CurrentHandDealerValue+ " points")
+
+            if (CurrentHandPlayerValue === 21){
+                Result.innerHTML = "BLACKJACK! YOU WIN!!!"
+            }
+            else if (CurrentHandDealerValue=== 21) {
+                Result.innerHTML = "You just got BLACKJack'd by the dealer!";
+                SeconCardDealerHidden.src = CurrentHandDealerArray[CurrentHandDealerArray.length -1].imgFile;
+            }
+        }
+        StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
 
 
 

@@ -56,3 +56,16 @@ My current objectives are (I did not write the list in chronological order):
 
 ### Fun features
 * The backside of all cards will be a Yu-Gi-Oh card
+* Let the Ace be worth 1 point if the player or dealer hits this card and if the total of the cards will be valued at above 21 if the ace is counted as having a value of 11
+  * This is how it's used in professional BlackJack
+
+## Some Thoughts
+At first I thought I had to remove the cards that will be used from the deck entirely, but now I'm thinking it might be better to put them in another array.
+I'm thinking of creating two new arrays, one will be called 'PlayersHand' and the other will be 'ComputersHand'. </br>
+
+When a card had been taken from the deck/it has been hit, I want the card itself to move to the other array. Then, I want to use that array to take out the links to the card images and show them on the webpage.
+
+Thanks to some help of the coaches, I was able to do this the way I wanted. At this point, I have finished the startup of the game. </br>
+
+At the very start, both the player and the dealer get two cards, both cards of the player can be seen while one card of the dealer is hidden.
+If the dealer has a blackjack, he immediately wins. I have found some bugs with the Ace card however and I intend to fix them once I have the chance
