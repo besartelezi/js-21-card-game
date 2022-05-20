@@ -277,14 +277,17 @@
     let FirstCardsPlayer
     let FirstCardsDealer
 
-    let SecondCardDealerHidden
-
     const Result = document.getElementById("Result");
     const StartButton = document.getElementById("StartGame");
     const HitButton = document.getElementById("Hit");
     const StandButton = document.getElementById("Stand");
     const PlayerScore = document.getElementById("PlayersScore");
     const DealersScore = document.getElementById("DealersScore");
+
+    //Added this so the Hit and Stand buttons aren't visible untill the game has started
+    StandButton.style.display = "none"
+    HitButton.style.display = "none"
+
 
     //The function that starts the game
         const StartGameGivingOutPlayerCards = () => {
@@ -334,6 +337,10 @@
                 //Skip Straight to the Stando tsukai fase
                 PlayerStands()
             }
+
+            StartButton.style.display = "none"
+            StandButton.style.display = "inline"
+            HitButton.style.display = "inline"
         }
         StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
 
@@ -388,6 +395,18 @@
         else {
             Result.innerHTML = "You lose, go get 'em next time champ";
         }
+
+        StandButton.style.display = "none"
+        HitButton.style.display = "none"
+        const PlayAgainButton = document.createElement("button");
+        PlayAgainButton.id = "PlayAgain"
+        PlayAgainButton.innerHTML = "Play Again"
+        document.getElementById("StartAndPlayAgain").appendChild(PlayAgainButton)
+        const PlayAgain = () => {
+            location.reload()
+        }
+        PlayAgainButton.addEventListener("click", PlayAgain);
+
 
     }
     StandButton.addEventListener("click", PlayerStands);

@@ -83,10 +83,23 @@ I have function that gives out two cards at the beginning to the player and the 
 - [x] I want to create the hitting function, that the player can keep using until he goes over the limit of a 21 cardvalue in their hands. 
 - [x] I want to create a stand function, that will be used as the dealer's actions. So once the player clicks "stand", it goes to the dealers turn.
 - [x] if the dealer has a cardvalue of 16 or less, he will keep hitting until he gets a cardvalue of above 17.~~ If during the hitting process, the dealer gets a higher cardvalue than 21, they lose.
-- [ ] Once the dealer gets a cardvalue of higher than 17, there will be an if function that:
-  - [ ] When players cards > dealers cards = player wins (when gambling, you get all the money in the wager)
-  - [ ] When player cards > dealers cards = dealer wins (when gambling, the dealer get all the money in the wager)
-  - [ ] When player cards = dealers cards = push = a tie (when gambling, nobody loses their money)
+- [x] Once the dealer gets a cardvalue of higher than 17, there will be an if function that:
+  - [x] When players cards > dealers cards = player wins (when gambling, you get all the money in the wager)
+  - [x] When player cards > dealers cards = dealer wins (when gambling, the dealer get all the money in the wager)
+  - [x] When player cards = dealers cards = push = a tie (when gambling, nobody loses their money)
+
 
 Most importantly, I need to make sure the user experience goes smoothly, this means, to automate anything that can be automated, remove buttons when they aren't needed anymore, etc etc.
+- [x] The Hit and Stand buttons are hidden until the game had started and it's the player's turn, once he stands, the buttons are removed again. 
+- [x] After game is finished, the start button needs to transform into a "restart" button
+- [ ] If I hit and get over 21, the game needs to be over, I shouldn't be able to hit anymore and my only option should be to playa again.
+- [ ] Styling (this can be done at the end)
 
+## What time? Reflection Time!
+Something I could definitely work on in the future, is making my HTML more SEO-friendly. I have used a lot of divs at places where I could certainly place another element. </br>
+
+Something that helped me out a **TON** in making this project, was a previous assignment I had to make for BeCode, [Here's the link to the assignment in question!](https://github.com/besartelezi/js-complete-course/tree/main/07-fetch/02-details). In this assignment, we had to use an external array and fetch it. </br>
+
+For this project, I started out with creating my own array of objects, the array being the card deck and each single card being an object. I added the card name, the value of the card, and a link to the image file to it. I liked doing the project this way, because even though creating the array was time-consuming, it eventually saved me much more time on other parts of the project. </br>
+
+I also learned that the equations we used to do in high school math class actually helped me understand javascript, so show your old math teachers some love party people.
