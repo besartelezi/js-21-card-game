@@ -75,13 +75,18 @@ Now that the play function is working, I'll have to focus on the player's option
 I will also have to move the "blackjack" part of my play function to the dealers and the players side of actions.
 
 ## When in Doubt, Write it Out
-I am struggling a bit on how to go further with the game, that's why I am going to write out everything I have and everything I have yet to achieve and cross out whatever I've finished
-* I have function that gives out two cards at the beginning to the player and the dealer. All cards are a part of an array, so when the cards are in the hands of the player and dealer, they're taken out of the deck.
-  * The starting Process is working as intended, I just want to add an option that if the total amount of the cards their value = 21, the player cant hit and skips straight to standing without having to press anything else. If the dealer also has a 21 after that without drawing any extra cards, its a draw and the game resets, or if the dealer doesnt have a 21, the game ends and the player wins.
-  ~~* I want to create the hitting function, that the player can keep using until he goes over the limit of a 21 cardvalue in their hands.~~~~
-  * I want to create a stand function, that will be used as the dealer's actions. So once the player clicks "stand", it goes to the dealers turn.
-    * if the dealer has a cardvalue of 16 or less, he will keep hitting until he gets a cardvalue of above 17. If during the hitting process, the dealer gets a higher cardvalue than 21, they lose.
-    * Once the dealer gets a cardvalue of higher than 17, there will be an if function that:
-      * When players cards > dealers cards = player wins (when gambling, you get all the money in the wager)
-      * When player cards > dealers cards = dealer wins (when gambling, the dealer get all the money in the wager)
-      * When player cards = dealers cards = push = a tie (when gambling, nobody loses their money)
+I am struggling a bit on how to go further with the game, that's why I am going to write out everything I have and everything I have yet to achieve and cross out whatever I've finished 
+
+I have function that gives out two cards at the beginning to the player and the dealer. All cards are a part of an array, so when the cards are in the hands of the player and dealer, they're taken out of the deck.
+
+- [x] The starting Process is working as intended, I just want to add an option that if the total amount of the cards their value = 21, the player cant hit and skips straight to standing without having to press anything else. If the dealer also has a 21 after that without drawing any extra cards, its a draw and the game resets, or if the dealer doesnt have a 21, the game ends and the player wins.
+- [x] I want to create the hitting function, that the player can keep using until he goes over the limit of a 21 cardvalue in their hands. 
+- [x] I want to create a stand function, that will be used as the dealer's actions. So once the player clicks "stand", it goes to the dealers turn.
+- [x] if the dealer has a cardvalue of 16 or less, he will keep hitting until he gets a cardvalue of above 17.~~ If during the hitting process, the dealer gets a higher cardvalue than 21, they lose.
+- [ ] Once the dealer gets a cardvalue of higher than 17, there will be an if function that:
+  - [ ] When players cards > dealers cards = player wins (when gambling, you get all the money in the wager)
+  - [ ] When player cards > dealers cards = dealer wins (when gambling, the dealer get all the money in the wager)
+  - [ ] When player cards = dealers cards = push = a tie (when gambling, nobody loses their money)
+
+Most importantly, I need to make sure the user experience goes smoothly, this means, to automate anything that can be automated, remove buttons when they aren't needed anymore, etc etc.
+

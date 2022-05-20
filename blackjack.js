@@ -277,10 +277,14 @@
     let FirstCardsPlayer
     let FirstCardsDealer
 
+    let SecondCardDealerHidden
+
     const Result = document.getElementById("Result");
     const StartButton = document.getElementById("StartGame");
     const HitButton = document.getElementById("Hit");
     const StandButton = document.getElementById("Stand");
+    const PlayerScore = document.getElementById("PlayersScore");
+    const DealersScore = document.getElementById("DealersScore");
 
     //The function that starts the game
         const StartGameGivingOutPlayerCards = () => {
@@ -317,49 +321,66 @@
             document.getElementById("DealersCards").appendChild(FirstCardsDealerShown)
             CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
 
-            const SeconCardDealerHidden = document.createElement("img");
+            let SecondCardDealerHidden = document.createElement("img");
             //This part has been adjusted, so it shows the backside of the second card
-            SeconCardDealerHidden.src = "images/cards/yugioh.jpg"
-            document.getElementById("DealersCards").appendChild(SeconCardDealerHidden)
+            SecondCardDealerHidden.src = "images/cards/yugioh.jpg"
+            SecondCardDealerHidden.id = "SecondCardBackside"
+            document.getElementById("DealersCards").appendChild(SecondCardDealerHidden)
             CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
 
+            PlayerScore.innerHTML = CurrentHandPlayerValue;
+
             if (CurrentHandPlayerValue === 21){
-            }
-            else if (CurrentHandDealerValue=== 21) {
-                Result.innerHTML = "You just got BLACKJack'd by the dealer!";
-                SeconCardDealerHidden.src = CurrentHandDealerArray[0].imgFile;
+                //Skip Straight to the Stando tskai fase
             }
         }
         StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
 
     const PlayerHits = () => {
-            let PlayerHitsCardIndexNumber = Math.floor(Math.random()*CardDeck.length)
+            let PlayerHitsCardIndexNumber = Math.floor(Math.random()*CardDeck.length);
             let PlayerHitsCard = CardDeck[PlayerHitsCardIndexNumber];
             CurrentHandPlayerArray.push(PlayerHitsCard)
         CurrentHandPlayerValue += PlayerHitsCard.cardvalue;
         const PlayerHitsCardShown = document.createElement("img");
         PlayerHitsCardShown.src = CurrentHandPlayerArray[CurrentHandPlayerArray.length -1].imgFile;
         document.getElementById("PlayersCards").appendChild(PlayerHitsCardShown);
-        CardDeck.splice(FirstCardsGivenToPlayerIndexNumber,1);
-        if (CurrentHandPlayerValue>22){
-            Result.innerHTML = "You lose, your score is too damn high!"
+        CardDeck.splice(PlayerHitsCardIndexNumber,1);
+        PlayerScore.innerHTML = CurrentHandPlayerValue
+        if (CurrentHandPlayerValue>21){
+            Result.innerHTML = "You BUSTED, You went over the score of 21 yA NUTcase!"
             //add code that will not let player use hit anymore, or instantly reset everything
+        }
+        else if (CurrentHandPlayerValue === 21) {
+            //function that player stands immediately
         }
     }
     HitButton.addEventListener("click", PlayerHits);
 
     const PlayerStands = () => {
-            if (CurrentHandPlayerValue === 21 && CurrentHandDealerValue < 21 ||
-            CurrentHandPlayerValue === 21 && CurrentHandDealerValue > 21) {
-                Result.innerHTML = "BLACKJACK! YOU WIN!!!"
+        const FlipSecondCard = document.getElementById("SecondCardBackside");
+        FlipSecondCard.src = CurrentHandDealerArray[0].imgFile;
+        DealersScore.innerHTML = CurrentHandDealerValue;
+        while (CurrentHandDealerValue<17){
+            let DealerHitsCardIndexNumber = Math.floor(Math.random()*CardDeck.length);
+            let DealerHitsCard = CardDeck[DealerHitsCardIndexNumber];
+            CurrentHandDealerArray.push(DealerHitsCard);
+            CurrentHandDealerValue += DealerHitsCard.cardvalue;
+            const DealerHitsCardShown = document.createElement("img");
+            DealerHitsCardShown.src = CurrentHandDealerArray [CurrentHandDealerArray.length -1].imgFile;
+            document.getElementById("DealersCards").appendChild(DealerHitsCardShown);
+            CardDeck.splice(DealerHitsCardIndexNumber,1);
+            if (CurrentHandDealerValue>17){
+                break
             }
-            //How the dealer will respond
-            else if (CurrentHandDealerValue>17) {
+            console.log(CurrentHandDealerValue)
+        }
+        DealersScore.innerHTML = CurrentHandDealerValue;
+        if (CurrentHandPlayerValue>CurrentHandDealerValue) {
 
-            }
+        }
     }
 
-    HitButton.addEventListener("click", PlayerHits);
+    StandButton.addEventListener("click", PlayerStands);
 
 
 
