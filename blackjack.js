@@ -331,7 +331,8 @@
             PlayerScore.innerHTML = CurrentHandPlayerValue;
 
             if (CurrentHandPlayerValue === 21){
-                //Skip Straight to the Stando tskai fase
+                //Skip Straight to the Stando tsukai fase
+                PlayerStands()
             }
         }
         StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
@@ -376,13 +377,19 @@
         }
         DealersScore.innerHTML = CurrentHandDealerValue;
         if (CurrentHandPlayerValue>CurrentHandDealerValue) {
-
+            Result.innerHTML = "Congratulations, you won!";
         }
+        else if (CurrentHandPlayerValue === CurrentHandDealerValue){
+            Result.innerHTML = "You tied, don't worry champ you'll get 'em next time!";
+        }
+        else if (CurrentHandPlayerValue < CurrentHandDealerValue && CurrentHandDealerValue>21){
+            Result.innerHTML = "The dealer blew it, you won champ!";
+        }
+        else {
+            Result.innerHTML = "You lose, go get 'em next time champ";
+        }
+
     }
-
     StandButton.addEventListener("click", PlayerStands);
-
-
-
 
 })();
