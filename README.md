@@ -87,8 +87,9 @@ I have function that gives out two cards at the beginning to the player and the 
 Most importantly, I need to make sure the user experience goes smoothly, this means, to automate anything that can be automated, remove buttons when they aren't needed anymore, etc etc.
 - [x] The Hit and Stand buttons are hidden until the game had started and it's the player's turn, once he stands, the buttons are removed again. 
 - [x] After game is finished, the start button needs to transform into a "restart" button
-- [ ] If the player hits and they get over 21, the game needs to be over, they shouldn't be able to hit anymore and their only option should be to play again.
-- [ ] The task description mentioned something about using prompts when needed, double-check if I have met those requirements.
+- [x] If the player hits and they get over 21, the game needs to be over, they shouldn't be able to hit anymore and their only option should be to play again.
+  - [x] When this happens, the dealer's second card needs to be flipped over, and an alert/text should appear that says "dealer won" and that your score was too high.
+- [x] The task description mentioned something about using prompts when needed, double-check if I have met those requirements.
 - [ ] Styling (this can be done at the end)
 
 ### Fun Features I could add if I had the time

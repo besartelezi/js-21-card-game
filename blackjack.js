@@ -333,14 +333,19 @@
 
             PlayerScore.innerHTML = CurrentHandPlayerValue;
 
-            if (CurrentHandPlayerValue === 21){
-                //Skip Straight to the Stando tsukai fase
-                PlayerStands()
-            }
-
             StartButton.style.display = "none"
             StandButton.style.display = "inline"
             HitButton.style.display = "inline"
+
+
+            if (CurrentHandPlayerValue === 21 && CurrentHandDealerValue<21 ||
+                //Normally I wouldn't add the code under here, but as of now, Aces still only count as 11's, and not as 1's when the current value of cards exceeds that of 21.
+            CurrentHandPlayerValue === 21 && CurrentHandDealerValue>21){
+                StandButton.style.display = "none"
+                HitButton.style.display = "none"
+                    Result.innerHTML = "BLACKJACK, you won!"
+                PlayerStands()
+            }
         }
         StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
 
@@ -355,8 +360,7 @@
         CardDeck.splice(PlayerHitsCardIndexNumber,1);
         PlayerScore.innerHTML = CurrentHandPlayerValue
         if (CurrentHandPlayerValue>21){
-            Result.innerHTML = "You BUSTED, You went over the score of 21 yA NUTcase!"
-            //add code that will not let player use hit anymore, or instantly reset everything
+            PlayerStands()
         }
         else if (CurrentHandPlayerValue === 21) {
             //function that player stands immediately
@@ -368,32 +372,41 @@
         const FlipSecondCard = document.getElementById("SecondCardBackside");
         FlipSecondCard.src = CurrentHandDealerArray[0].imgFile;
         DealersScore.innerHTML = CurrentHandDealerValue;
-        while (CurrentHandDealerValue<17){
-            let DealerHitsCardIndexNumber = Math.floor(Math.random()*CardDeck.length);
-            let DealerHitsCard = CardDeck[DealerHitsCardIndexNumber];
-            CurrentHandDealerArray.push(DealerHitsCard);
-            CurrentHandDealerValue += DealerHitsCard.cardvalue;
-            const DealerHitsCardShown = document.createElement("img");
-            DealerHitsCardShown.src = CurrentHandDealerArray [CurrentHandDealerArray.length -1].imgFile;
-            document.getElementById("DealersCards").appendChild(DealerHitsCardShown);
-            CardDeck.splice(DealerHitsCardIndexNumber,1);
-            if (CurrentHandDealerValue>17){
-                break
+        if (CurrentHandDealerValue === 21 && CurrentHandPlayerValue<21){
+            Result.innerHTML = "The dealer won with a natural 21, GG EZ!"
+        }
+        else if (CurrentHandPlayerValue>21){
+            Result.innerHTML = "You BUSTED, You went over the score of 21 yA NUTcase!"
+        }
+
+        else if (CurrentHandPlayerValue<21){
+            while (CurrentHandDealerValue<17){
+                let DealerHitsCardIndexNumber = Math.floor(Math.random()*CardDeck.length);
+                let DealerHitsCard = CardDeck[DealerHitsCardIndexNumber];
+                CurrentHandDealerArray.push(DealerHitsCard);
+                CurrentHandDealerValue += DealerHitsCard.cardvalue;
+                const DealerHitsCardShown = document.createElement("img");
+                DealerHitsCardShown.src = CurrentHandDealerArray [CurrentHandDealerArray.length -1].imgFile;
+                document.getElementById("DealersCards").appendChild(DealerHitsCardShown);
+                CardDeck.splice(DealerHitsCardIndexNumber,1);
+                if (CurrentHandDealerValue>17){
+                    break
+                }
             }
-            console.log(CurrentHandDealerValue)
-        }
-        DealersScore.innerHTML = CurrentHandDealerValue;
-        if (CurrentHandPlayerValue>CurrentHandDealerValue) {
-            Result.innerHTML = "Congratulations, you won!";
-        }
-        else if (CurrentHandPlayerValue === CurrentHandDealerValue){
-            Result.innerHTML = "You tied, don't worry champ you'll get 'em next time!";
-        }
-        else if (CurrentHandPlayerValue < CurrentHandDealerValue && CurrentHandDealerValue>21){
-            Result.innerHTML = "The dealer blew it, you won champ!";
-        }
-        else {
-            Result.innerHTML = "You lose, go get 'em next time champ";
+            DealersScore.innerHTML = CurrentHandDealerValue;
+            if (CurrentHandPlayerValue>CurrentHandDealerValue &&
+            CurrentHandPlayerValue<21) {
+                Result.innerHTML = "Congratulations, you won!";
+            }
+            else if (CurrentHandPlayerValue === CurrentHandDealerValue){
+                Result.innerHTML = "You tied, don't worry champ you'll get 'em next time!";
+            }
+            else if (CurrentHandPlayerValue < CurrentHandDealerValue && CurrentHandDealerValue>21){
+                Result.innerHTML = "The dealer blew it, you won champ!";
+            }
+            else {
+                Result.innerHTML = "You lose, go get 'em next time champ";
+            }
         }
 
         StandButton.style.display = "none"
@@ -406,7 +419,6 @@
             location.reload()
         }
         PlayAgainButton.addEventListener("click", PlayAgain);
-
 
     }
     StandButton.addEventListener("click", PlayerStands);
