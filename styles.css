@@ -4,12 +4,17 @@ body{
 #DealersScore, #PlayersScore{
     color: white;
     font-family: sans-serif;
-    padding: 10px;
+    padding: 15px;
     font-weight: bold;
-    font-size: 35px ;
+    font-size: 25px ;
 }
-#Result{
 
+
+#Result{
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 25px;
 }
 .DealersBoard, .PlayersBoard{
     display: flex;

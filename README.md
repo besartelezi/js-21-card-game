@@ -91,12 +91,26 @@ Most importantly, I need to make sure the user experience goes smoothly, this me
   - [x] When this happens, the dealer's second card needs to be flipped over, and an alert/text should appear that says "dealer won" and that your score was too high.
 - [x] The task description mentioned something about using prompts when needed, double-check if I have met those requirements.
 - [x] Styling (this can be done at the end)
-  - [ ] Make the styling look better than it is right now
+
+Checklist with different results that can happen in blackjack
+- [x] Player > Dealer && Player < 21 && Dealer < 21 = Player Wins
+- [x] Player < Dealer && Player < 21 && Dealer < 21 = Dealer Wins
+- [x] Player = Dealer = Tie
+- [x] Player > 21 = Player Busts = Dealer Wins
+- [x] Dealer > 21 = Dealer Busts = Player Wins
+
+These are the things that should be checked in the start game function
+- [ ] Player gets 21 with only 2 cards && Dealer has 2 cards, but they aren't valued together at 21 = Player Wins
+- [ ] Dealer gets 21 with only 2 cards && Player has 2 cards, but they aren't valued together at 21 = Dealer Wins
+- [ ] Player gets 21 with only 2 cards && Dealer has 2 cards that **are** valued together at 21 = Draw of BlackJacks- 
 
 ### Fun Features I could add if I had the time
+- [ ] Let the player know when they win with a natural 21 at Blackjack, or when the dealer wins with a natural 21.
+  - [ ] The way I will do this is by adding '&&' to my if statements, so that when the player has a natural 21, the computer can check that by looking at the value of the cards AND the amount of cards in the player's hands (by checking the length of the array that contains all the cards the player currently has).
 - [ ] Let the Ace be worth 1 point if the player or dealer hits this card and if the total of the cards will be valued at above 21 if the ace is counted as having a value of 11
 - [ ] A gambling mechanic
 - [ ] Create custom players in the game (computers)
+- [ ] Make the styling look better than it is right now
 - [ ] Add a card-counter, showing the player how many cards there are currently in the deck
 - [ ] Have the dealer be D'Arby from the popular anime JoJo's Bizarre Adventure, and while playing, let him sometimes say one of his famous quotes
     * I created a similar mechanic like this for my cookie clicker game [that you can play here!](https://besartelezi.github.io/coockie-clicker/)

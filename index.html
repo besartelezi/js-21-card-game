@@ -8,9 +8,9 @@
 <body>
 <section class = "DealersBoard">
     <div class = "DealersHands">
-        <div id ="DealersScore"></div>
         <div id = "DealersCards"></div>
     </div>
+    <div id ="DealersScore"></div>
 </section>
 <section class = "NeutralZone">
     <h1 id="Result"></h1>
@@ -19,13 +19,14 @@
 </section>
 <section class = "PlayersBoard">
     <div class = "PlayersHand">
-        <div id ="PlayersScore"></div>
         <div id="PlayersCards"></div>
+        <div id="PlayersOptions">
+            <button class = "HitAndStand" id="Hit">Hit</button>
+            <button class = "HitAndStand" id="Stand">Stand</button>
+        </div>
     </div>
-    <div id="PlayersOptions">
-        <button class = "HitAndStand" id="Hit">Hit</button>
-        <button class = "HitAndStand" id="Stand">Stand</button>
-    </div>
+    <div id ="PlayersScore"></div>
+
 </section>
 <script src="blackjack.js"></script>
 </body>
