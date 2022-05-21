@@ -15,7 +15,7 @@ In order to recreate the game, we should first learn what the rules are. After p
   * I think adding an option where the player can decide for themselves what the value of the ace should be would be extremely fun.
   * Face cards (King, Queen, Jack) are worth 10 points
 ### Betting Mechanic
-* I won't be implementing this for now, however, if i have some time left I'd definetly like to do this
+* I won't be implementing this for now, however, if I have some time left I'd definitely like to do this
   * I'm thinking I should just create a let variable with the amount of chips in it, and then let the player choose between different buttons that will be used as chips to raise the amount they'd like to gamble.
 ### The Deal
 * Once the bet has been placed (Which won't be relevant in this game for now), the dealer gives one card face up to the player and then one card face up to themselves. The player then gets a second face-up card, but the dealer gets his card face down.
@@ -49,13 +49,13 @@ My current objectives are (I did not write the list in chronological order):
     * At the very start, when both the player and the dealer get two cards each.
     * The computer hits a card
 * Creating a function that gives out two cards respectively to the player and the dealer, with one card of the dealer being face down
-  * I might have to add a "Backside" value and a "Frontside" value to the card objects. 
+  * I might have to add a "Backside" value and a "front-side" value to the card objects. 
     * Or this Won't be needed, and I'll just add one jpeg of the back of a card that will be used by every second card of the dealer.
 
 #### That's all I got for now, planning is one thing but actually coding is another one entirely.
 
 ## Some Thoughts
-At first I thought I had to remove the cards that will be used from the deck entirely, but now I'm thinking it might be better to put them in another array.
+At first, I thought I had to remove the cards that will be used from the deck entirely, but now I'm thinking it might be better to put them in another array.
 I'm thinking of creating two new arrays, one will be called 'PlayersHand' and the other will be 'ComputersHand'. </br>
 
 When a card had been taken from the deck/it has been hit, I want the card itself to move to the other array. Then, I want to use that array to take out the links to the card images and show them on the webpage.
@@ -63,18 +63,18 @@ When a card had been taken from the deck/it has been hit, I want the card itself
 Thanks to some help of the coaches, I was able to do this the way I wanted. At this point, I have finished the startup of the game. </br>
 
 At the very start, both the player and the dealer get two cards, both cards of the player can be seen while one card of the dealer is hidden.
-If the dealer has a blackjack, he immediately wins. I have found some bugs with the Ace card however and I intend to fix them once I have the chance:
+If the dealer has a blackjack, he immediately wins. I have found some bugs with the Ace card however, and I intend to fix them once I have the chance:
 * The issue was that when the dealer won with a blackjack, the cards he shows were just both a copy of the same card, instead of two different cards. This issue was resolved luckily.
 
-Now that the play function is working, I'll have to focus on the player's options of hitting and standing, and then the acions the dealer has to commit. I already have a clear vision of how the dealer will act. 
+Now that the play function is working, I'll have to focus on the player's options of hitting and standing, and then the actions the dealer has to commit. I already have a clear vision of how the dealer will act. 
 I will also have to move the "blackjack" part of my play function to the dealers and the players side of actions.
 
 ## When in Doubt, Write it Out
 I am struggling a bit on how to go further with the game, that's why I am going to write out everything I have and everything I have yet to achieve and cross out whatever I've finished 
 
-I have function that gives out two cards at the beginning to the player and the dealer. All cards are a part of an array, so when the cards are in the hands of the player and dealer, they're taken out of the deck.
+I have a function that gives out two cards at the beginning to the player and the dealer. All cards are a part of an array, so when the cards are in the hands of the player and dealer, they're taken out of the deck.
 
-- [x] The starting Process is working as intended, I just want to add an option that if the total amount of the cards their value = 21, the player cant hit and skips straight to standing without having to press anything else. If the dealer also has a 21 after that without drawing any extra cards, its a draw and the game resets, or if the dealer doesnt have a 21, the game ends and the player wins.
+- [x] The starting Process is working as intended, I just want to add an option that if the total amount of the cards their value = 21, the player can't hit and skips straight to standing without having to press anything else. If the dealer also has a 21 after that without drawing any extra cards, it's a draw and the game resets, or if the dealer doesn't have a 21, the game ends and the player wins.
 - [x] I want to create the hitting function, that the player can keep using until he goes over the limit of a 21 cardvalue in their hands. 
 - [x] I want to create a stand function, that will be used as the dealer's actions. So once the player clicks "stand", it goes to the dealers turn.
 - [x] if the dealer has a cardvalue of 16 or less, he will keep hitting until he gets a cardvalue of above 17.~~ If during the hitting process, the dealer gets a higher cardvalue than 21, they lose.
@@ -84,29 +84,29 @@ I have function that gives out two cards at the beginning to the player and the 
   - [x] When player cards = dealers cards = push = a tie (when gambling, nobody loses their money)
 
 
-Most importantly, I need to make sure the user experience goes smoothly, this means, to automate anything that can be automated, remove buttons when they aren't needed anymore, etc etc.
-- [x] The Hit and Stand buttons are hidden until the game had started and it's the player's turn, once he stands, the buttons are removed again. 
+Most importantly, I need to make sure the user experience goes smoothly, this means, to automate anything that can be automated, remove buttons when they aren't needed anymore, etc.
+- [x] The Hit and Stand buttons are hidden until the game has started and it's the player's turn, once he stands, the buttons are removed again. 
 - [x] After game is finished, the start button needs to transform into a "restart" button
 - [x] If the player hits and they get over 21, the game needs to be over, they shouldn't be able to hit anymore and their only option should be to play again.
   - [x] When this happens, the dealer's second card needs to be flipped over, and an alert/text should appear that says "dealer won" and that your score was too high.
 - [x] The task description mentioned something about using prompts when needed, double-check if I have met those requirements.
-- [ ] Styling (this can be done at the end)
+- [x] Styling (this can be done at the end)
+  - [ ] Make the styling look better than it is right now
 
 ### Fun Features I could add if I had the time
-* Let the Ace be worth 1 point if the player or dealer hits this card and if the total of the cards will be valued at above 21 if the ace is counted as having a value of 11
-  * This is how it's used in professional BlackJack
-* A gambling mechanic
-* Create custom players in the game (computers)
-* Add a card-counter, showing the player how many cards there are currently in the deck
-* Have the dealer be D'Arby from the popular anime JoJo's Bizarre Adventure, and while playing, let him sometimes say one of his famous quotes
-  * I created a similar mechanic like this for my cookie clicker game [that you can play here!](https://besartelezi.github.io/coockie-clicker/)
-* When the player wins with a natural 21, that it's shown on the screen that they won by Blackjack! This also counts for the dealer. And if both parties have a natural 21, that it ends up in a draw.
+- [ ] Let the Ace be worth 1 point if the player or dealer hits this card and if the total of the cards will be valued at above 21 if the ace is counted as having a value of 11
+- [ ] A gambling mechanic
+- [ ] Create custom players in the game (computers)
+- [ ] Add a card-counter, showing the player how many cards there are currently in the deck
+- [ ] Have the dealer be D'Arby from the popular anime JoJo's Bizarre Adventure, and while playing, let him sometimes say one of his famous quotes
+    * I created a similar mechanic like this for my cookie clicker game [that you can play here!](https://besartelezi.github.io/coockie-clicker/)
+- [x] When the player wins with a natural 21, that it's shown on the screen that they won by Blackjack! This also counts for the dealer. And if both parties have a natural 21, that it ends up in a draw.
 
 ## What time? Reflection Time!
-Something I could definitely work on in the future, is making my HTML more SEO-friendly. I have used a lot of divs at places where I could certainly place another element. </br>
+Something I could definitely work on in the future, is making my HTML more SEO-friendly by focussing more on the semantics. I have used a lot of divs at places where I could certainly place another element. </br>
 
-Something that helped me out a **TON** in making this project, was a previous assignment I had to make for BeCode, [Here's the link to the assignment in question!](https://github.com/besartelezi/js-complete-course/tree/main/07-fetch/02-details). In this assignment, we had to use an external array and fetch it. </br>
+Something that helped me out a **TON** in making this project, was a previous assignment I had to make for BeCode, [Here's a link to the assignment in question!](https://github.com/besartelezi/js-complete-course/tree/main/07-fetch/02-details). In this assignment, we had to use an external array and fetch it. </br>
 
 For this project, I started out with creating my own array of objects, the array being the card deck and each single card being an object. I added the card name, the value of the card, and a link to the image file to it. I liked doing the project this way, because even though creating the array was time-consuming, it eventually saved me much more time on other parts of the project. </br>
 
-I also learned that the equations we used to do in high school math class actually helped me understand javascript, so show your old math teachers some love party people.
+I also learned that the equations we used to do in high school math class actually helped me understand javascript a lot, so show your old math teachers some love party people.

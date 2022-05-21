@@ -261,21 +261,19 @@
                 imgFile: "images/cards/king_of_spades.svg"
             },
         ]
-    console.log(CardDeck)
+
+    let CurrentHandPlayerArray = [];
+    let CurrentHandDealerArray = [];
 
 
-    let CurrentHandPlayerArray = []
-    let CurrentHandDealerArray = []
-
-
-    let FirstCardsGivenToPlayerIndexNumber
-    let FirstCardsGivenToComputerIndexNumber
+    let FirstCardsGivenToPlayerIndexNumber;
+    let FirstCardsGivenToComputerIndexNumber;
 
     let CurrentHandDealerValue = 0;
     let CurrentHandPlayerValue = 0;
 
-    let FirstCardsPlayer
-    let FirstCardsDealer
+    let FirstCardsPlayer;
+    let FirstCardsDealer;
 
     const Result = document.getElementById("Result");
     const StartButton = document.getElementById("StartGame");
@@ -284,9 +282,9 @@
     const PlayerScore = document.getElementById("PlayersScore");
     const DealersScore = document.getElementById("DealersScore");
 
-    //Added this so the Hit and Stand buttons aren't visible untill the game has started
-    StandButton.style.display = "none"
-    HitButton.style.display = "none"
+    //Added this so the Hit and Stand buttons aren't visible until the game has started
+    StandButton.style.display = "none";
+    HitButton.style.display = "none";
 
 
     //The function that starts the game
@@ -294,76 +292,82 @@
             //letting the code run twice
             for (let i=0; i<2; i++) {
                 //This part is all about the player getting their first two cards
-                //picks out a index number of one of the cards from the array
-                FirstCardsGivenToPlayerIndexNumber = Math.floor(Math.random()*CardDeck.length)
+                //picks out an index number of one of the cards from the array
+                FirstCardsGivenToPlayerIndexNumber = Math.floor(Math.random()*CardDeck.length);
                 //picks out the card by the index number
                 FirstCardsPlayer = CardDeck[FirstCardsGivenToPlayerIndexNumber];
                 //push the card that has been drawn/hit from the deck into the array that serves as the current player's hands
-                CurrentHandPlayerArray.push(FirstCardsPlayer)
+                CurrentHandPlayerArray.push(FirstCardsPlayer);
                 //add the value of the card to the current value of the player's hands
                 CurrentHandPlayerValue += FirstCardsPlayer.cardvalue;
                 //Showing the image from the drawn card on the players side of the table
                 const FirstPlayerCardsShown = document.createElement("img");
                 //Picks out the current card that's in the player's hand
-                FirstPlayerCardsShown.src = CurrentHandPlayerArray[CurrentHandPlayerArray.length -1].imgFile
-                document.getElementById("PlayersCards").appendChild(FirstPlayerCardsShown)
+                FirstPlayerCardsShown.src = CurrentHandPlayerArray[CurrentHandPlayerArray.length -1].imgFile;
+                document.getElementById("PlayersCards").appendChild(FirstPlayerCardsShown);
                 //removes the chosen card from the deck
                 CardDeck.splice(FirstCardsGivenToPlayerIndexNumber,1);
-                //console logged everything to double check, it is working as intented
+                //console logged everything to double-check, it is working as intended
 
                 //This part is all about the dealer getting their first two cards
-                FirstCardsGivenToComputerIndexNumber = Math.floor(Math.random()*CardDeck.length)
+                FirstCardsGivenToComputerIndexNumber = Math.floor(Math.random()*CardDeck.length);
                 FirstCardsDealer = CardDeck[FirstCardsGivenToComputerIndexNumber];
-                CurrentHandDealerArray.push(FirstCardsDealer)
+                CurrentHandDealerArray.push(FirstCardsDealer);
                 CurrentHandDealerValue += FirstCardsDealer.cardvalue;
 
             }
-            //I have put this part of the code outside of the loop, because I want the second card to not be shown to the player
+            //I have put this part of the code outside the loop, because I want the second card to not be shown to the player
             const FirstCardsDealerShown = document.createElement("img");
-            FirstCardsDealerShown.src = CurrentHandDealerArray[CurrentHandDealerArray.length -1].imgFile
-            document.getElementById("DealersCards").appendChild(FirstCardsDealerShown)
+            FirstCardsDealerShown.src = CurrentHandDealerArray[CurrentHandDealerArray.length -1].imgFile;
+            document.getElementById("DealersCards").appendChild(FirstCardsDealerShown);
             CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
 
             let SecondCardDealerHidden = document.createElement("img");
             //This part has been adjusted, so it shows the backside of the second card
-            SecondCardDealerHidden.src = "images/cards/yugioh.jpg"
-            SecondCardDealerHidden.id = "SecondCardBackside"
-            document.getElementById("DealersCards").appendChild(SecondCardDealerHidden)
+            SecondCardDealerHidden.src = "images/cards/yugioh.jpg";
+            SecondCardDealerHidden.id = "SecondCardBackside";
+            document.getElementById("DealersCards").appendChild(SecondCardDealerHidden);
             CardDeck.splice(FirstCardsGivenToComputerIndexNumber,1);
 
             PlayerScore.innerHTML = CurrentHandPlayerValue;
 
-            StartButton.style.display = "none"
-            StandButton.style.display = "inline"
-            HitButton.style.display = "inline"
+            StartButton.style.display = "none";
+            StandButton.style.display = "inline";
+            HitButton.style.display = "inline";
 
 
             if (CurrentHandPlayerValue === 21 && CurrentHandDealerValue<21 ||
                 //Normally I wouldn't add the code under here, but as of now, Aces still only count as 11's, and not as 1's when the current value of cards exceeds that of 21.
             CurrentHandPlayerValue === 21 && CurrentHandDealerValue>21){
-                StandButton.style.display = "none"
-                HitButton.style.display = "none"
-                    Result.innerHTML = "BLACKJACK, you won!"
+                StandButton.style.display = "none";
+                HitButton.style.display = "none";
+                    Result.innerHTML = "BLACKJACK, you won!";
                 PlayerStands()
             }
+            else if (CurrentHandPlayerValue === 21 && CurrentHandDealerValue === 21) {
+                Result.innerHTML = "A tie between two blackjacks, what are the odds?";
+                StandButton.style.display = "none";
+                HitButton.style.display = "none";
+            }
         }
-        StartButton.addEventListener("click",StartGameGivingOutPlayerCards)
+        StartButton.addEventListener("click",StartGameGivingOutPlayerCards);
 
     const PlayerHits = () => {
             let PlayerHitsCardIndexNumber = Math.floor(Math.random()*CardDeck.length);
             let PlayerHitsCard = CardDeck[PlayerHitsCardIndexNumber];
-            CurrentHandPlayerArray.push(PlayerHitsCard)
+            CurrentHandPlayerArray.push(PlayerHitsCard);
         CurrentHandPlayerValue += PlayerHitsCard.cardvalue;
         const PlayerHitsCardShown = document.createElement("img");
         PlayerHitsCardShown.src = CurrentHandPlayerArray[CurrentHandPlayerArray.length -1].imgFile;
         document.getElementById("PlayersCards").appendChild(PlayerHitsCardShown);
         CardDeck.splice(PlayerHitsCardIndexNumber,1);
-        PlayerScore.innerHTML = CurrentHandPlayerValue
+        PlayerScore.innerHTML = CurrentHandPlayerValue;
         if (CurrentHandPlayerValue>21){
-            PlayerStands()
+            PlayerStands();
         }
         else if (CurrentHandPlayerValue === 21) {
             //function that player stands immediately
+            PlayerStands();
         }
     }
     HitButton.addEventListener("click", PlayerHits);
@@ -373,10 +377,10 @@
         FlipSecondCard.src = CurrentHandDealerArray[0].imgFile;
         DealersScore.innerHTML = CurrentHandDealerValue;
         if (CurrentHandDealerValue === 21 && CurrentHandPlayerValue<21){
-            Result.innerHTML = "The dealer won with a natural 21, GG EZ!"
+            Result.innerHTML = "The dealer won with a natural 21, GG EZ!";
         }
         else if (CurrentHandPlayerValue>21){
-            Result.innerHTML = "You BUSTED, You went over the score of 21 yA NUTcase!"
+            Result.innerHTML = "You BUSTED, You went over the score of 21 yA NUTcase!";
         }
 
         else if (CurrentHandPlayerValue<21){
@@ -390,7 +394,7 @@
                 document.getElementById("DealersCards").appendChild(DealerHitsCardShown);
                 CardDeck.splice(DealerHitsCardIndexNumber,1);
                 if (CurrentHandDealerValue>17){
-                    break
+                    break;
                 }
             }
             DealersScore.innerHTML = CurrentHandDealerValue;
@@ -409,14 +413,14 @@
             }
         }
 
-        StandButton.style.display = "none"
-        HitButton.style.display = "none"
+        StandButton.style.display = "none";
+        HitButton.style.display = "none";
         const PlayAgainButton = document.createElement("button");
-        PlayAgainButton.id = "PlayAgain"
-        PlayAgainButton.innerHTML = "Play Again"
+        PlayAgainButton.id = "PlayAgain";
+        PlayAgainButton.innerHTML = "Play Again";
         document.getElementById("StartAndPlayAgain").appendChild(PlayAgainButton)
         const PlayAgain = () => {
-            location.reload()
+            location.reload();
         }
         PlayAgainButton.addEventListener("click", PlayAgain);
 
